@@ -120,6 +120,8 @@ elif options.host:
         #pass through the port, in case it's non standard.
         result = details[0]
         result['ansible_ssh_port'] = result['Port']
+        result['ansible_ssh_user'] = result['User']
+        result['ansible_ssh_private_key_file'] = result['IdentityFile'].lstrip('"').rstrip('"')
 
     print json.dumps(result)
     sys.exit(1)
