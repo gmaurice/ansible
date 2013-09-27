@@ -185,8 +185,8 @@ class Connection(object):
             raise errors.AnsibleError("failed to open a SFTP connection (%s)", e)
         try:
             self.sftp.get(in_path, out_path)
-        except IOError:
-            raise errors.AnsibleError("failed to transfer file from %s" % in_path)
+        except IOError as e:
+            raise errors.AnsibleError("failed to transfer file from %s (%s)" % (in_path, e ) )
 
     def close(self):
         ''' terminate the connection '''
